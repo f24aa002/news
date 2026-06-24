@@ -1,58 +1,140 @@
-<div class="main-layout">
+<!DOCTYPE html>
+<html lang="ja">
 
-  <aside class="sidebar glass">
+<head>
 
-    <h3>📍 地域</h3>
-    <button onclick="getCurrentLocation()">
-      現在地取得
-    </button>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <h3>☀️ 天気</h3>
-    <div id="weather-container">
-      読み込み中...
-    </div>
+  <title>情報集約サイト Pro</title>
 
-    <h3>📈 株価</h3>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <input
-      id="stock-input"
-      placeholder="7203.T">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <button onclick="searchStock()">
-      検索
-    </button>
+  <link rel="stylesheet" href="css/index.css">
 
-    <div id="stock-container">
-    </div>
+</head>
 
-  </aside>
+<body>
 
-  <main class="content">
+  <div class="container">
 
-    <h2>📰 最新ニュース</h2>
+    <div class="top-bar">
 
-    <div class="category-buttons">
+      <div id="clock" class="glass"></div>
 
-      <button onclick="loadNews('technology')">
-        IT
-      </button>
-
-      <button onclick="loadNews('sports')">
-        スポーツ
-      </button>
-
-      <button onclick="loadNews('business')">
-        経済
-      </button>
-
-      <button onclick="loadNews('gaming')">
-        ゲーム
+      <button onclick="toggleDarkMode()">
+        🌙 ダークモード
       </button>
 
     </div>
 
-    <div id="news-container"></div>
+    <h1>🌎 情報集約サイト</h1>
 
-  </main>
+    <div class="search-area glass">
 
-</div>
+      <div class="search-group">
+
+        <input
+          type="text"
+          id="city-input"
+          placeholder="都市名を入力">
+
+        <button onclick="searchCity()">
+          天気検索
+        </button>
+
+      </div>
+
+      <div class="search-group">
+
+        <input
+          type="text"
+          id="news-input"
+          placeholder="ニュース検索">
+
+        <button onclick="searchNews()">
+          ニュース検索
+        </button>
+
+      </div>
+
+      <button onclick="getCurrentLocation()">
+        📍 現在地取得
+      </button>
+
+    </div>
+
+    <div class="main-layout">
+
+      <aside class="sidebar glass">
+
+        <h3>📍 地域</h3>
+
+        <button onclick="getCurrentLocation()">
+          現在地取得
+        </button>
+
+        <h3>☀️ 天気</h3>
+
+        <div id="weather-container">
+          読み込み中...
+        </div>
+
+        <h3>📈 株価</h3>
+
+        <input
+          type="text"
+          id="stock-input"
+          placeholder="7203.T">
+
+        <button onclick="searchStock()">
+          検索
+        </button>
+
+        <div id="stock-container">
+        </div>
+
+      </aside>
+
+      <main class="content">
+
+        <h2 class="section-title">
+          📰 最新ニュース
+        </h2>
+
+        <div class="category-buttons">
+
+          <button onclick="loadNews('technology')">
+            IT
+          </button>
+
+          <button onclick="loadNews('sports')">
+            スポーツ
+          </button>
+
+          <button onclick="loadNews('business')">
+            経済
+          </button>
+
+          <button onclick="loadNews('gaming')">
+            ゲーム
+          </button>
+
+        </div>
+
+        <div id="news-container"></div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <script src="js/index.js"></script>
+
+</body>
+
+</html>
