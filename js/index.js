@@ -253,6 +253,7 @@ const url =
 
 function getCurrentLocation(){
 
+  
   navigator.geolocation.getCurrentPosition(
 
     pos => {
@@ -441,8 +442,59 @@ function searchNews(){
 }
 
 //////////////////////////////
-// 初期表示
+// 株価
 //////////////////////////////
+async function searchStock(){
 
-getCurrentLocation();
+  const symbol =
+    document
+      .getElementById("stock-input")
+      .value
+      .trim();
 
+  if(!symbol) return;
+
+  const container =
+    document.getElementById("stock-container");
+
+  container.innerHTML = "取得中...";
+
+  try{
+
+    const res =
+      await fetch(`/api/stock?symbol=${symbol}`);
+
+    const data =
+      await res.json();
+
+    const quote =
+      data["Global Quote"];
+
+    container.innerHTML = `
+      <h3>${symbol}</h3>
+      <p>価格: ${quote["05. price"]}</p>
+      <p>前日比: ${quote["09. change"]}</p>
+      <p>変化率: ${quote["10. change percent"]}</p>
+    `;
+
+  }catch(error){
+
+    container.innerHTML = "取得失敗";
+
+    console.error(error);
+
+  }
+
+}
+
+document
+  .getElementById("stock-input")
+  .addEventListener("keydown", e => {
+
+    if(e.key === "Enter"){
+
+      searchStock();
+
+    }
+
+  });
