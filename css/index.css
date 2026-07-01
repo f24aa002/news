@@ -326,3 +326,29 @@ input{
   margin-bottom:10px;
 
 }
+.stock-card{
+    margin-top:15px;
+    padding:15px;
+    border-top:1px solid #ddd;
+}
+
+.stock-symbol{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.stock-price{
+    font-size:32px;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.stock-up{
+    color:#e53935;
+    font-weight:bold;
+}
+
+.stock-down{
+    color:#1e88e5;
+    font-weight:bold;
+}
