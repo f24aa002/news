@@ -402,18 +402,11 @@ function loadNews(keyword){
 
 }
 
-
-
 //////////////////////////////
-// 株価
+// 株価取得
 //////////////////////////////
-async function searchStock(){
 
-  const symbol =
-    document
-      .getElementById("stock-input")
-      .value
-      .trim();
+async function searchStock(symbol){
 
   if(!symbol) return;
 
@@ -425,43 +418,34 @@ async function searchStock(){
   try{
 
     const res =
-      await fetch(`/api/stock?symbol=${symbol}`);
+      await fetch(`/api/stock?symbol=${encodeURIComponent(symbol)}`);
 
-    const data =
-      await res.json();
+    const data = await res.json();
 
-    const quote =
-      data["Global Quote"];
+    const quote = data["Global Quote"];
+
+    if(!quote || !quote["05. price"]){
+
+      container.innerHTML = "銘柄が見つかりません";
+      return;
+
+    }
 
     container.innerHTML = `
-      <h3>${symbol}</h3>
-      <p>価格: ${quote["05. price"]}</p>
-      <p>前日比: ${quote["09. change"]}</p>
-      <p>変化率: ${quote["10. change percent"]}</p>
+      <h4>${symbol}</h4>
+      <p>価格：${quote["05. price"]}</p>
+      <p>前日比：${quote["09. change"]}</p>
+      <p>変化率：${quote["10. change percent"]}</p>
     `;
 
   }catch(error){
 
     container.innerHTML = "取得失敗";
-
     console.error(error);
 
   }
 
 }
-
-document
-  .getElementById("stock-input")
-  .addEventListener("keydown", e => {
-
-    if(e.key === "Enter"){
-
-      searchStock();
-
-    }
-
-  });
-
   //////////////////////////////
 // 統合検索
 //////////////////////////////
