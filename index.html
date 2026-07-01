@@ -31,51 +31,29 @@
 
     </div>
 
-    <h1>🌎 情報集約サイト</h1>
+    <h1> 情報集約サイト</h1>
 
     <div class="search-area glass">
 
       <div class="search-group">
-
         <input
-          type="text"
-          id="city-input"
-          placeholder="都市名を入力">
-
-        <button onclick="searchCity()">
-          天気検索
-        </button>
-
-      </div>
-
-      <div class="search-group">
-
-        <input
-          type="text"
-          id="news-input"
-          placeholder="ニュース検索">
-
-        <button onclick="searchNews()">
-          ニュース検索
-        </button>
-
-      </div>
-
-      <button onclick="getCurrentLocation()">
-        📍 現在地取得
+        type="text"
+        id="search-input"
+        placeholder="検索ワードを入力">
+        
+        <select id="search-type">
+        <option value="weather">天気</option>
+        <option value="news">ニュース</option>
+        <option value="stock">株価</option>
+      </select>
+      <button onclick="unifiedSearch()">
+        検索
       </button>
-
     </div>
-
+    
     <div class="main-layout">
 
       <aside class="sidebar glass">
-
-        <h3>📍 地域</h3>
-
-        <button onclick="getCurrentLocation()">
-          現在地取得
-        </button>
 
         <h3>☀️ 天気</h3>
 

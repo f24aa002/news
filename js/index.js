@@ -317,28 +317,6 @@ function searchCity(){
 }
 
 //////////////////////////////
-// Enter検索
-//////////////////////////////
-
-document
-  .getElementById("city-input")
-  .addEventListener("keydown",e=>{
-
-    if(e.key==="Enter"){
-      searchCity();
-    }
-});
-
-document
-  .getElementById("news-input")
-  .addEventListener("keydown",e=>{
-
-    if(e.key==="Enter"){
-      searchNews();
-    }
-});
-
-//////////////////////////////
 // ニュース取得
 //////////////////////////////
 
@@ -424,22 +402,7 @@ function loadNews(keyword){
 
 }
 
-//////////////////////////////
-// ニュース検索
-//////////////////////////////
 
-function searchNews(){
-
-  const keyword =
-    document
-      .getElementById("news-input")
-      .value
-      .trim();
-
-  if(keyword){
-    loadNews(keyword);
-  }
-}
 
 //////////////////////////////
 // 株価
@@ -494,6 +457,61 @@ document
     if(e.key === "Enter"){
 
       searchStock();
+
+    }
+
+  });
+
+  //////////////////////////////
+// 統合検索
+//////////////////////////////
+
+function unifiedSearch(){
+
+  const keyword =
+    document
+      .getElementById("search-input")
+      .value
+      .trim();
+
+  const type =
+    document
+      .getElementById("search-type")
+      .value;
+
+  if(!keyword) return;
+
+  if(type === "weather"){
+
+    let city =
+      cityMap[keyword] || keyword;
+
+    getWeather(city);
+
+  }
+  else if(type === "news"){
+
+    loadNews(keyword);
+
+  }
+  else if(type === "stock"){
+
+    document
+      .getElementById("stock-input")
+      .value = keyword;
+
+    searchStock();
+
+  }
+}
+
+document
+  .getElementById("search-input")
+  .addEventListener("keydown",e=>{
+
+    if(e.key==="Enter"){
+
+      unifiedSearch();
 
     }
 

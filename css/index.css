@@ -5,18 +5,14 @@
 }
 
 body{
+
   font-family:'Poppins',sans-serif;
 
-  background:
-    linear-gradient(
-      135deg,
-      #fefefe,
-      #ffffff
-    );
+  background:#f3f4f6;
 
   min-height:100vh;
 
-  color:rgb(0, 0, 0);
+  color:#111827;
 
   padding:20px;
 }
@@ -54,16 +50,15 @@ h1{
 
 .glass{
 
-  background:rgba(255,255,255,0.15);
+  background:white;
 
-  backdrop-filter:blur(10px);
+  border:1px solid #e5e7eb;
 
-  border:1px solid rgba(255,255,255,0.2);
-
-  border-radius:20px;
+  border-radius:16px;
 
   box-shadow:
-    0 8px 32px rgba(0,0,0,0.2);
+    0 4px 12px rgba(0,0,0,0.08);
+
 }
 
 #clock{
@@ -75,18 +70,31 @@ h1{
 button{
 
   border:none;
+
   padding:12px 20px;
 
   border-radius:12px;
 
   cursor:pointer;
 
-  transition:0.3s;
+  transition:0.2s;
 
   font-weight:bold;
 
-  background:white;
-  color:#333;
+  background:#2563eb;
+
+  color:white;
+
+  box-shadow:
+    0 4px 10px rgba(37,99,235,0.25);
+}
+
+button:hover{
+
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(37,99,235,0.35);
 }
 
 button:hover{
@@ -107,11 +115,23 @@ button:hover{
 .search-group{
 
   display:flex;
+
   gap:10px;
 
   flex-wrap:wrap;
 
   margin-bottom:20px;
+
+  padding:15px;
+
+  background:white;
+
+  border:1px solid #e5e7eb;
+
+  border-radius:16px;
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.08);
 }
 
 input{
@@ -120,15 +140,19 @@ input{
 
   min-width:200px;
 
-  padding:14px;
+  padding:14px 16px;
 
-  border:none;
+  border:1px solid #d1d5db;
 
   border-radius:12px;
 
   outline:none;
 
   font-size:16px;
+
+  background:#fafafa;
+
+  transition:0.2s;
 }
 
 .section-title{
