@@ -432,11 +432,20 @@ async function searchStock(symbol){
     }
 
     container.innerHTML = `
-      <h4>${symbol}</h4>
-      <p>価格：${quote["05. price"]}</p>
-      <p>前日比：${quote["09. change"]}</p>
-      <p>変化率：${quote["10. change percent"]}</p>
-    `;
+    <div class="stock-card">
+    <h4>${symbol}</h4>
+
+    <div class="stock-price">
+        ${Number(quote["05. price"]).toLocaleString()}
+    </div>
+
+    <div class="stock-change ${
+        Number(quote["09. change"]) >= 0 ? "up" : "down"
+    }">
+        ${quote["09. change"]} (${quote["10. change percent"]})
+    </div>
+</div>
+`;
 
   }catch(error){
 
