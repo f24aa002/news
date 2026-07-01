@@ -407,60 +407,45 @@ function loadNews(keyword){
 //////////////////////////////
 // 株価
 //////////////////////////////
-async function searchStock(){
+async function searchStock(symbol) {
 
-  const symbol =
-    document
-      .getElementById("stock-input")
-      .value
-      .trim();
+  symbol = symbol.trim();
 
-  if(!symbol) return;
+  if (!symbol) return;
 
-  const container =
-    document.getElementById("stock-container");
+  const container = document.getElementById("stock-container");
 
   container.innerHTML = "取得中...";
 
-  try{
+  try {
 
-    const res =
-      await fetch(`/api/stock?symbol=${symbol}`);
+    const res = await fetch(`/api/stock?symbol=${encodeURIComponent(symbol)}`);
+    const data = await res.json();
 
-    const data =
-      await res.json();
+    const quote = data["Global Quote"];
 
-    const quote =
-      data["Global Quote"];
+    if (!quote || !quote["05. price"]) {
+      container.innerHTML = "銘柄が見つかりません";
+      return;
+    }
 
     container.innerHTML = `
-      <h3>${symbol}</h3>
-      <p>価格: ${quote["05. price"]}</p>
-      <p>前日比: ${quote["09. change"]}</p>
-      <p>変化率: ${quote["10. change percent"]}</p>
+      <div class="stock-card">
+        <h3>${symbol}</h3>
+        <p><strong>価格</strong>：${quote["05. price"]}</p>
+        <p><strong>前日比</strong>：${quote["09. change"]}</p>
+        <p><strong>変化率</strong>：${quote["10. change percent"]}</p>
+      </div>
     `;
 
-  }catch(error){
+  } catch (error) {
 
     container.innerHTML = "取得失敗";
-
     console.error(error);
 
   }
 
 }
-
-document
-  .getElementById("stock-input")
-  .addEventListener("keydown", e => {
-
-    if(e.key === "Enter"){
-
-      searchStock();
-
-    }
-
-  });
 
   //////////////////////////////
 // 統合検索
