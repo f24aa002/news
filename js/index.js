@@ -446,7 +446,7 @@ async function searchStock(symbol){
   }
 
 }
-  //////////////////////////////
+//////////////////////////////
 // 統合検索
 //////////////////////////////
 
@@ -480,12 +480,7 @@ function unifiedSearch(){
   }
   else if(type === "stock"){
 
-    document
-      .getElementById("stock-input")
-      .value = keyword;
-
-    searchStock();
-
+  searchStock(keyword);
   }
 }
 
